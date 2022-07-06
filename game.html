@@ -1,0 +1,283 @@
+<!doctype html>
+<head>
+	<meta charset="UTF-8">
+	<style>
+		table{
+			border-collapse:collapse;
+		}
+		td{
+			border:1px solid black;
+			height:30px;
+			width:30px;
+			text-align:center;
+			font-size:25px;
+		}
+	</style>
+	<script>
+		var a=4;
+		var b=4;
+		var wynik=0;
+		var ifo=0;
+		var tab=[];
+		var tab2=[];
+		var blokada=0;
+		/*
+		var e;
+		var f;
+		var c;
+		var d;
+		var kontrol=0;
+		for(var n=0;n<10;n++){
+			kontrol=0;
+			do{
+				e=Math.random()*8+1;
+				f=Math.random()*8+1;
+				c=Math.floor(e);
+				d=Math.floor(f);
+				for(var n=0;n<10;n++){
+					if(c==tab[n]&&d==tab2[n]){
+						break;
+					}else{
+						if(n==9){
+							ifo=1;
+						}
+					}
+				}
+			}while(ifo==1);
+			tab.unshift(c);
+			tab2.unshift(d);
+		}
+		
+		
+		for(var n=0;n<10;n++){
+			document.write(tab[n]+"  ");
+			document.write(tab2[n]+"<br>");
+		}
+		*/
+		
+		
+		var kon=0;
+		function klawisz(event) {
+			if(blokada==0){
+			if(kon==1){
+				document.getElementById("p"+a+b).innerHTML="•";
+				kon=0;
+			}
+			if(kon==2){
+				document.getElementById("p"+a+b).innerHTML="X";
+				kon=0;
+			}
+			var x = event.key;
+			var z=document.getElementById("p"+a+b).textContent;
+			if(z==="•"||z=="X"){
+			
+			}else{
+				document.getElementById("p"+a+b).innerHTML="";
+			}
+			if(x=="Enter"){
+				
+				
+				for(var n=0;n<10;n++){
+					if(a==tab[n]&&b==tab2[n]){
+						alert("Trafiłeś bombe");
+						document.getElementById("p"+a+b).innerHTML="X";
+						blokada=1;
+						aaa();
+					}else{
+						wynik++;
+					}
+				if(wynik%10==0){
+					document.getElementById("p"+a+b).innerHTML="•";
+				}
+				}
+			}
+			if(wynik==550){
+					alert("Wygrałeś");
+					aaa();
+			}
+			if(x=="ArrowLeft"){
+				
+				if(b==1){
+				}else{
+					b--;
+					z=document.getElementById("p"+a+b).textContent;
+				}
+				if(z==="•"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=1;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+				if(z==="X"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=2;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+			}
+			if(x=="ArrowRight"){
+				
+				if(b==8){
+					
+				}else{
+					b++;
+					z=document.getElementById("p"+a+b).textContent;
+				}
+				if(z==="•"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=1;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+				if(z==="X"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=2;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+			}
+			if(x=="ArrowUp"){
+				
+				if(a==1){
+				
+				}else{
+					a--;
+					z=document.getElementById("p"+a+b).textContent;
+				}
+				if(z==="•"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=1;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+				if(z==="X"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=2;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+			}
+			if(x=="ArrowDown"){
+				
+				if(a==8){
+				
+				}else{
+					a++;
+					z=document.getElementById("p"+a+b).textContent;
+				}
+				if(z==="•"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=1;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+				if(z==="X"){
+					document.getElementById("p"+a+b).innerHTML="*";
+					kon=2;
+				}else{
+					document.getElementById("p"+a+b).innerHTML="*";
+				}
+			}
+			if(x=="Shift"){
+				alert(wynik);
+			}
+			}
+		}
+		
+		function aaa(){
+			document.getElementById("button").innerHTML='<button onclick="reset()">RESET</button>'
+		}
+		function reset(){
+			history.go(0);
+		}
+	</script>
+</head>
+<body onkeydown="klawisz(event)">
+	<table>
+		<tr>
+			<td id="p11"></td>
+			<td id="p12"></td>
+			<td id="p13"></td>
+			<td id="p14"></td>
+			<td id="p15"></td>
+			<td id="p16"></td>
+			<td id="p17"></td>
+			<td id="p18"></td>
+		</tr>
+		<tr>
+			<td id="p21"></td>
+			<td id="p22"></td>
+			<td id="p23"></td>
+			<td id="p24"></td>
+			<td id="p25"></td>
+			<td id="p26"></td>
+			<td id="p27"></td>
+			<td id="p28"></td>
+		</tr>
+		<tr>
+			<td id="p31"></td>
+			<td id="p32"></td>
+			<td id="p33"></td>
+			<td id="p34"></td>
+			<td id="p35"></td>
+			<td id="p36"></td>
+			<td id="p37"></td>
+			<td id="p38"></td>
+			
+		</tr>
+		<tr>
+			<td id="p41"></td>
+			<td id="p42"></td>
+			<td id="p43"></td>
+			<td id="p44"></td>
+			<td id="p45"></td>
+			<td id="p46"></td>
+			<td id="p47"></td>
+			<td id="p48"></td>
+		</tr>
+		<tr>
+			<td id="p51"></td>
+			<td id="p52"></td>
+			<td id="p53"></td>
+			<td id="p54"></td>
+			<td id="p55"></td>
+			<td id="p56"></td>
+			<td id="p57"></td>
+			<td id="p58"></td>
+		</tr>
+		<tr>
+			<td id="p61"></td>
+			<td id="p62"></td>
+			<td id="p63"></td>
+			<td id="p64"></td>
+			<td id="p65"></td>
+			<td id="p66"></td>
+			<td id="p67"></td>
+			<td id="p68"></td>
+		</tr>
+		<tr>
+			<td id="p71"></td>
+			<td id="p72"></td>
+			<td id="p73"></td>
+			<td id="p74"></td>
+			<td id="p75"></td>
+			<td id="p76"></td>
+			<td id="p77"></td>
+			<td id="p78"></td>
+		</tr>
+		<tr>
+			<td id="p81"></td>
+			<td id="p82"></td>
+			<td id="p83"></td>
+			<td id="p84"></td>
+			<td id="p85"></td>
+			<td id="p86"></td>
+			<td id="p87"></td>
+			<td id="p88"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<p id="button"></p>
+</body>
+</html>
