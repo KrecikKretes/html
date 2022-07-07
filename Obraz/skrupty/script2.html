@@ -1,0 +1,47 @@
+<!doctype html>
+<head>
+	<meta name="author" content="Damian Zawisza">
+	<meta name="description" name="Przygotowanie do egzaminu zawodowego E.14">
+	<meta charset="UTF-8">
+	<link rel="icon" href="../img/favicon.ico">
+	<link rel="stylesheet" href="../css/styl.css">
+	<title>AK | JS. Szablon kolorkowy</title>
+</head>
+<body>
+	<header>
+		<div id="lewy">
+			<img src="../img/logo.png" id="logo">JavaScript
+		</div>
+		<nav id="right">
+				<div id="red1" class="red">Try JavaScript</div>
+				<div id="red2" class="red">News</div>
+				<div id="red3" class="red">Resources</div>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<article>
+				<button type="button" onclick="f3()">UTWÓRZ LOSOWY STRING</button>
+				<input id="a1" type="text">
+			</article>
+		
+		
+		<script>
+			function f3(){
+				var tab=["0","1","2","3","4","5","6","7","8","9","!","#","$","%","^","&","*","(",")","_","+","-","=","q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"];
+				var z1=tab[Math.floor(Math.random()*74)];
+				var z2=tab[Math.floor(Math.random()*74)];
+				var z3=tab[Math.floor(Math.random()*74)];
+				var z4=tab[Math.floor(Math.random()*74)];
+				var z5=tab[Math.floor(Math.random()*74)];
+				var z6=tab[Math.floor(Math.random()*74)];
+				var z7=tab[Math.floor(Math.random()*74)];
+				var z8=tab[Math.floor(Math.random()*74)];
+				document.getElementById("a1").value=z1+z2+z3+z4+z5+z6+z7+z8;
+			}
+		</script>
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>

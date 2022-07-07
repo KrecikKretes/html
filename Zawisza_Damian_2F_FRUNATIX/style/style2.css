@@ -1,0 +1,118 @@
+@font-face{
+	font-family:czcionka;
+	src:url(../fonty/OpenSans.ttf)
+}
+header{
+	width:100%;
+	border-bottom:5px yellow solid;
+	height:250px;
+}
+body{
+	width:100%;
+	font-family:czcionka;
+	text-indent:10px;
+	position:relative;
+	right:10px;
+}
+#logo{
+	width:100px;
+}
+h1{
+	position:absolute;
+	top:30px;
+	left:100px;
+}
+#left{
+	width:30%;
+	float:left;
+}
+#right{
+	width:69%;
+	float:right;
+}
+#baner{
+	width:500px;
+	position:relative;
+	bottom:40px;
+}
+hr{
+	height:20px;
+	width:100%;
+	background-color:yellow;
+}
+li:nth-child(1) {
+    border-left: 5px solid greenyellow;
+}
+li:nth-child(2) {
+    border-left: 5px solid yellow;
+}
+li:nth-child(3) {
+    border-left: 5px solid orange;
+}
+li:nth-child(4) {
+    border-left: 5px solid darkorange;
+}
+li:nth-child(5) {
+    border-left: 5px solid yellow;
+}
+li:nth-child(6) {
+    border-left: 5px solid greenyellow;
+}
+li:nth-child(7) {
+    border-left: 5px solid greenyellow;
+}
+li:nth-child(8) {
+    border-left: 5px solid darkblue;
+}
+a:hover{
+	color:lightgreen;
+}
+a{
+	text-decoration:none;
+	font-family:czcionka;
+	color:black;
+}
+#li{
+	list-style:none;
+	height:30px;
+	font-size:20px;
+}
+ul{
+	width:300px;
+	text-decoration:none;
+	position:relative;
+	top:50px;
+}
+main{
+	width:90%;
+	font-size:18px;
+	height:300px;
+}
+h2{
+	position:absolute;
+	top:280px;
+	left:350px;
+	font-weight:bold;
+}
+#p{
+	position:absolute;
+	top:350px;
+	left:360px;
+}
+footer{
+	border-top:5px yellow solid;
+	text-align:center;
+}
+#footer{
+	position:relative;
+	top:10px;
+}
+#a{
+	font-weight:bold;
+}
+#brak{
+	border:0px white solid;
+	margin:10px;
+	height:30px;
+	font-size:20px;
+}

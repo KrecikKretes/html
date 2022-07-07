@@ -1,0 +1,71 @@
+<!doctype html>
+<head>
+	<meta name="author" content="Damian Zawisza">
+	<meta name="description" name="Przygotowanie do egzaminu zawodowego E.14">
+	<meta charset="UTF-8">
+	<link rel="icon" href="../img/favicon.ico">
+	<link rel="stylesheet" href="../css/styl.css">
+	<title>AK | JS. Szablon kolorkowy</title>
+</head>
+<body>
+	<header>
+		<div id="lewy">
+			<img src="../img/logo.png" id="logo">JavaScript
+		</div>
+		<nav id="right">
+				<div id="red1" class="red">Try JavaScript</div>
+				<div id="red2" class="red">News</div>
+				<div id="red3" class="red">Resources</div>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<article>
+				<input type="number" id="p1">x<sup>2</sup>+<input type="number" id="p2">x+<input type="number" id="p3">=0
+				<br>
+				<button onclick="f1()" type="button">ROZWIĄŻ</button><button  type="button" onclick="f2()">WYCZYŚĆ</button>
+				<br><br>
+				Komunikat: <span id="tekst"></span>
+			</article>
+		
+		
+		<script>
+			function f1(){
+				var p1=document.getElementById("p1").value;
+				var p2=document.getElementById("p2").value;
+				var p3=document.getElementById("p3").value;
+				if(p1!==""&&p2!==""&&p3!==""){
+					alert("Ups, pozostawiłeś puste pole!");
+				}else{
+					if(p1==0){
+						alert("hm... To nie jest równanie kwadratowe");
+					}else{
+						var delta=(p2*p2)-(4*p1*p3);
+						if(delta<0){
+							document.getElementById("tekst").textContent="Brak rozwiązań";
+						}else{
+							if(delta>0){
+								var x1=(-p2-Math.sqrt(delta))/(2*p1);
+								var x2=(-p2+Math.sqrt(delta))/(2*p1);
+								document.getElementById("tekst").textContent="x1 = "+x1+"     x2 = "+x2;
+							}else{ 
+								var x3=-p2/(2*p1);
+								document.getElementById("tekst").textContent="x = "+x3;
+							}
+						}
+					}
+				}
+			}
+			function f2(){
+				document.getElementById("p1").value="";
+				document.getElementById("p2").value="";
+				document.getElementById("p3").value="";
+				document.getElementById("tekst").textContent="";
+				
+			}
+		</script>
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>
