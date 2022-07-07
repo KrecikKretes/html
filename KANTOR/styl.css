@@ -1,0 +1,64 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+}
+header{
+	width:100%;
+	height:130px;
+	background-color:dimgray;
+}
+#wrapper{
+	width:100%;
+	
+}
+footer{
+	width:100%;
+	height:130px;
+	background-color:dimgray;
+}
+img{
+	width:100%;
+	
+}
+input{
+	width:100%;
+}
+#logo{
+	width:280px;
+	margin: 20px;
+}
+table{
+	margin-left: auto;
+    margin-right: auto;
+}
+td{
+	
+}
+#form{
+	text-align:center;
+	
+}
+#pogrub{
+	font-weight:bold;
+}
+button{
+	background-color:orange;
+	color:white;
+	width:40%;
+	height:30px;
+}
+#formy{
+	width:60%;
+}
+#kroki{
+	width:70%;
+}
+#kolo1{
+	width:150px;
+}
+#kolo2{
+	width:150px;
+}
+#kolo3{
+	width:150px;
+}
