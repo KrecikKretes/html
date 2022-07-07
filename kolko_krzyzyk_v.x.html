@@ -1,0 +1,667 @@
+<!doctype html>
+<head>
+	<meta charset="UTF-8">
+	<style>
+		body{
+			margin-left:10%;
+			margin-top:5%;
+		}
+		table{
+			border-collapse:collapse;
+		}
+		td{
+			height:80px;
+			width:80px;
+			text-align:center;
+			font-size:55px;
+		}
+		div{
+			position:relative;
+			right:300px;
+		}
+	</style>
+	<script>
+		for(var forowa=0;forowa<1;){
+			var warunek=parseInt(prompt('Podaj ile krzyżyków lub kółek musi być w rzędzie aby ktoś wygrał. Dostępne opcje 3 , 4 , 5 .'));
+			if(warunek>=3&&warunek<=5){
+				forowa=2;
+			}else{
+				alert("Podaj poprawny warunek");
+			}
+		}
+			
+		if(warunek==3){	
+			alert("Zaraz podasz wymiary planszy. Pamiętaj że min. to 3x3");
+			for(var forowa=0;forowa<1;){
+				var dlu=parseInt(prompt("Podaj długość planszy"));
+				var sze=parseInt(prompt("Podaj szerokość planszy"));
+				if(dlu>=3&&sze>=3){
+					forowa=2;
+				}else{
+					alert("Podaj poprawne wymiary");
+				}
+			}
+		}
+		
+		if(warunek==4){	
+			alert("Zaraz podasz wymiary planszy. Pamiętaj że min. to 4x4");
+			for(var forowa=0;forowa<1;){
+				var dlu=parseInt(prompt("Podaj długość planszy"));
+				var sze=parseInt(prompt("Podaj szerokość planszy"));
+				if(dlu>=4&&sze>=4){
+					forowa=2;
+				}else{
+					alert("Podaj poprawne wymiary");
+				}
+			}
+		}
+		
+		if(warunek==5){	
+			alert("Zaraz podasz wymiary planszy. Pamiętaj że min. to 5x5");
+			for(var forowa=0;forowa<1;){
+				var dlu=parseInt(prompt("Podaj długość planszy"));
+				var sze=parseInt(prompt("Podaj szerokość planszy"));
+				if(dlu>=5&&sze>=5){
+					forowa=2;
+				}else{
+					alert("Podaj poprawne wymiary");
+				}
+			}
+		}
+		
+		document.write('<table><tr><td style="border-bottom:1px solid black;border-right:1px solid black" id="p11"></td>');
+		for(var forowa=0,idkowa=2;forowa<sze-2;forowa++,idkowa++){
+			document.write('<td style="border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black" id="p1'+idkowa+'"></td>');
+		}
+		document.write('<td style="border-bottom:1px solid black;border-left:1px solid black" id="p1'+sze+'"></td></tr>');
+		
+		for(var forowa1=2;forowa1<dlu;forowa1++){
+			document.write('<tr><td style="border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black" id="p'+forowa1+'1"></td>');
+			for(var forowa2=2;forowa2<sze;forowa2++){
+				document.write('<td style="border:1px solid black" id="p'+forowa1+forowa2+'"></td>');
+			}
+			document.write('<td style="border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black" id="p'+forowa1+sze+'"></td></tr>');
+		}
+		
+		
+		document.write('<tr><td style="border-right:1px solid black;border-top:1px solid black" id="p'+dlu+'1"></td>');
+		for(var forowa=2;forowa<sze;forowa++){
+			document.write('<td style="border-left:1px solid black;border-right:1px solid black;border-top:1px solid black" id="p'+dlu+forowa+'"></td>');
+		}
+		document.write('<td style="border-left:1px solid black;border-top:1px solid black" id="p'+dlu+sze+'"></td></tr></table>');
+	
+	
+	
+		var a=1;
+		var b=1;
+		var c="";
+		var ifo=0;
+		var tab=[];
+		var tab2=[];
+		var blokada=0;
+		var znak=1;
+		var id;
+		var wygrana=0;
+	
+		
+		
+		var kon=0;
+		function klawisz(event) {
+			aaa();
+			id=""+a+b;
+			if(blokada==0){
+				if(kon==1){
+					document.getElementById("p"+a+b).innerHTML="O";
+					kon=0;
+				}
+				if(kon==2){
+					document.getElementById("p"+a+b).innerHTML="X";
+					kon=0;
+				}
+				var x = event.key;
+				var z=document.getElementById("p"+a+b).textContent;
+				if(z==="O"||z=="X"){
+				}else{
+					document.getElementById("p"+a+b).innerHTML="";
+				}
+				
+				if(x=="Enter"){
+					if(z==""){
+						if(znak%2==0){
+							document.getElementById("p"+a+b).innerHTML="O";
+							tab.push(c+id);
+						}else{
+							document.getElementById("p"+a+b).innerHTML="X";
+							tab2.push(c+id);
+						}
+						znak++;
+						
+						if(warunek==3){
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+(a-2)+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+(a-2)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+(a-2)+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							
+							if(tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							
+							
+							
+						
+						
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+(a-2)+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+(a-2)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+(a-2)+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							
+							if(tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							
+						}
+						
+						if(warunek==4){
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0&&tab.indexOf(c+a+(b+3))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))&&tab.indexOf(c+(a+3)+(b+3))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0&&tab.indexOf(c+(a+3)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0&&tab.indexOf(c+(a+3)+(b-3))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+(b-2))>=0&&tab.indexOf(c+a+(b-3))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+(a-2)+(b-2))>=0&&tab.indexOf(c+(a-3)+(b-3))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+(a-2)+b)>=0&&tab.indexOf(c+(a-3)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+(a-2)+(b+2))>=0&&tab.indexOf(c+(a-3)+(b+3))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							
+							if(tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+(a-2)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+(a-2)+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+(a-2)+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							
+							
+							
+						
+						
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0&&tab2.indexOf(c+a+(b+3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))&&tab2.indexOf(c+(a+3)+(b+3))>=0>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0&&tab2.indexOf(c+(a+3)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0&&tab2.indexOf(c+(a+3)+(b-3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+(b-2))>=0&&tab2.indexOf(c+a+(b-3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+(a-2)+(b-2))>=0&&tab2.indexOf(c+(a-3)+(b-3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+(a-2)+b)>=0&&tab2.indexOf(c+(a-3)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+(a-2)+(b+2))>=0&&tab2.indexOf(c+(a-3)+(b+3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							
+							if(tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+(a-2)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+(a-2)+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+(a-2)+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+						}
+						
+						
+						if(warunek==5){
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0&&tab.indexOf(c+a+(b+3))>=0&&tab.indexOf(c+a+(b+4))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))&&tab.indexOf(c+(a+3)+(b+3))>=0&&tab.indexOf(c+(a+4)+(b+4))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0&&tab.indexOf(c+(a+3)+b)>=0&&tab.indexOf(c+(a+4)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0&&tab.indexOf(c+(a+3)+(b-3))>=0&&tab.indexOf(c+(a+4)+(b-4))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+(b-2))>=0&&tab.indexOf(c+a+(b-3))>=0&&tab.indexOf(c+a+(b-4))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+(a-2)+(b-2))>=0&&tab.indexOf(c+(a-3)+(b-3))>=0&&tab.indexOf(c+(a-4)+(b-4))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+(a-2)+b)>=0&&tab.indexOf(c+(a-3)+b)>=0&&tab.indexOf(c+(a-4)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+(a-2)+(b+2))>=0&&tab.indexOf(c+(a-3)+(b+3))>=0&&tab.indexOf(c+(a-4)+(b+4))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							
+							if(tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0&&tab.indexOf(c+(a+3)+b)>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))>=0&&tab.indexOf(c+(a+3)+(b+3))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0&&tab.indexOf(c+a+(b+3))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0&&tab.indexOf(c+(a+3)+(b-3))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+(a-2)+b)>=0&&tab.indexOf(c+(a-3)+b)>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+(a-2)+(b-2))>=0&&tab.indexOf(c+(a-3)+(b-3))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+(b-2))>=0&&tab.indexOf(c+a+(b-3))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+(a-2)+(b+2))>=0&&tab.indexOf(c+(a-3)+(b+3))>=0){
+								alert("Wygrał kółko");
+								wygrana=1;
+							}
+							
+							if(tab.indexOf(c+(a-2)+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-2)+(b-2))>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+a+(b-2))>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							if(tab.indexOf(c+(a-2)+(b+2))>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0){
+								alert("Wygrało kółko");
+								wygrana=1;
+							}
+							
+							
+							
+						
+
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0&&tab2.indexOf(c+a+(b+3))>=0&&tab2.indexOf(c+a+(b+4))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))&&tab2.indexOf(c+(a+3)+(b+3))>=0&&tab2.indexOf(c+(a+4)+(b+4))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0&&tab2.indexOf(c+(a+3)+b)>=0&&tab2.indexOf(c+(a+4)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0&&tab2.indexOf(c+(a+3)+(b-3))>=0&&tab2.indexOf(c+(a+4)+(b-4))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+(b-2))>=0&&tab2.indexOf(c+a+(b-3))>=0&&tab2.indexOf(c+a+(b-4))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+(a-2)+(b-2))>=0&&tab2.indexOf(c+(a-3)+(b-3))>=0&&tab2.indexOf(c+(a-4)+(b-4))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+(a-2)+b)>=0&&tab2.indexOf(c+(a-3)+b)>=0&&tab2.indexOf(c+(a-4)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+(a-2)+(b+2))>=0&&tab2.indexOf(c+(a-3)+(b+3))>=0&&tab2.indexOf(c+(a-4)+(b+4))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							
+							if(tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0&&tab2.indexOf(c+(a+3)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))>=0&&tab2.indexOf(c+(a+3)+(b+3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0&&tab2.indexOf(c+a+(b+3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0&&tab2.indexOf(c+(a+3)+(b-3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+(a-2)+b)>=0&&tab2.indexOf(c+(a-3)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+(a-2)+(b-2))>=0&&tab2.indexOf(c+(a-3)+(b-3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+(b-2))>=0&&tab2.indexOf(c+a+(b-3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+(a-2)+(b+2))>=0&&tab2.indexOf(c+(a-3)+(b+3))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							
+							if(tab2.indexOf(c+(a-2)+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-2)+(b-2))>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+a+(b-2))>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+							if(tab2.indexOf(c+(a-2)+(b+2))>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0){
+								alert("Wygrał krzyżyk");
+								wygrana=1;
+							}
+						}
+						
+						
+						
+						
+					}
+					if(znak==(dlu*sze)+1&&wygrana==0){
+						alert("Nikt nie wygrał");
+					}
+					
+					
+				}	
+				
+				if(x=="ArrowLeft"){
+					if(b==1){
+					}else{
+						b--;
+						z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+				if(x=="ArrowRight"){
+					if(b==sze){	
+					}else{
+					b++;
+					z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+				if(x=="ArrowUp"){
+					if(a==1){
+					}else{
+						a--;
+						z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+				if(x=="ArrowDown"){
+					if(a==dlu){	
+					}else{
+						a++;
+						z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+			}
+		}
+		
+		function aaa(){
+			document.getElementById("button").innerHTML='<button onclick="reset()">RESET</button>'
+		}
+		function reset(){
+			history.go(0);
+		}
+	</script>
+	
+</head>
+<body onkeydown="klawisz(event)">
+	<br>
+	<br>
+	<p id="button"></p>
+	<br>
+	<br>
+	<div>
+		<h1>Zasady</h1>
+		<p>Gwiazdka wskazuje pozycje kursora. Aby nadać polu znak należy wcisnąć Enter oraz potwierdzić wybór ponownie klikając Enter. Pierwszy zaczyna krzyżyk. Powodzenia!</p>
+	</div>
+</body>
+</html>

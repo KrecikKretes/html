@@ -1,0 +1,420 @@
+<!doctype html>
+<head>
+	<meta charset="UTF-8">
+	<style>
+		body{
+			position:absolute;
+			left:30%;
+			top:5%;
+		}
+		table{
+			border-collapse:collapse;
+		}
+		td{
+			height:70px;
+			width:70px;
+			text-align:center;
+			font-size:55px;
+		}
+		#p11{
+			border-bottom:1px solid black;
+			border-right:1px solid black;
+		}
+		#p19{
+			border-bottom:1px solid black;
+			border-left:1px solid black;
+		}
+		#p22,#p24,#p26,#p28,#p33,#p35,#p37,#p42,#p44,#p46,#p48,#p53,#p55,#p57,#p62,#p64,#p66,#p68,#p73,#p75,#p77,#p82,#p84,#p86,#p88{
+			border:1px solid black;
+		}
+		#p31,#p51,#p71{
+			border-top:1px solid black;
+			border-right:1px solid black;
+			border-bottom:1px solid black;
+		}
+		#p39,#p59,#p79{
+			border-top:1px solid black;
+			border-left:1px solid black;
+			border-bottom:1px solid black;
+		}
+		#p13,#p15,#p17{
+			border-left:1px solid black;
+			border-right:1px solid black;
+			border-bottom:1px solid black;
+		}
+		#p93,#p95,#p97{
+			border-left:1px solid black;
+			border-right:1px solid black;
+			border-top:1px solid black;
+		}
+		#p91{
+			border-right:1px solid black;
+			border-top:1px solid black;
+		}
+		#p99{
+			border-left:1px solid black;
+			border-top:1px solid black;
+		}
+		div{
+			position:relative;
+			right:300px;
+		}
+	</style>
+	<script>
+		var a=5;
+		var b=5;
+		var c="";
+		var ifo=0;
+		var tab=[];
+		var tab2=[];
+		var blokada=0;
+		var znak=1;
+		var id;
+		var wygrana=0;
+	
+		
+		
+		var kon=0;
+		function klawisz(event) {
+			aaa();
+			id=""+a+b;
+			if(blokada==0){
+				if(kon==1){
+					document.getElementById("p"+a+b).innerHTML="O";
+					kon=0;
+				}
+				if(kon==2){
+					document.getElementById("p"+a+b).innerHTML="X";
+					kon=0;
+				}
+				var x = event.key;
+				var z=document.getElementById("p"+a+b).textContent;
+				if(z==="O"||z=="X"){
+				}else{
+					document.getElementById("p"+a+b).innerHTML="";
+				}
+				
+				if(x=="Enter"){
+					if(z==""){
+						if(znak%2==0){
+							document.getElementById("p"+a+b).innerHTML="O";
+							tab.push(c+id);
+						}else{
+							document.getElementById("p"+a+b).innerHTML="X";
+							tab2.push(c+id);
+						}
+						znak++;
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0&&tab.indexOf(c+a+(b+2))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0&&tab.indexOf(c+(a+2)+(b+2))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0&&tab.indexOf(c+(a+2)+b)>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0&&tab.indexOf(c+(a+2)+(b-2))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+(b-2))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+(a-2)+(b-2))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+(a-2)+b)>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+(a-2)+(b+2))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						
+						if(tab.indexOf(c+(a-1)+b)>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+b)>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+(a-1)+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b+1))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+a+(b-1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+a+(b+1))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						if(tab.indexOf(c+(a-1)+(b+1))>=0&&tab.indexOf(c+a+b)>=0&&tab.indexOf(c+(a+1)+(b-1))>=0){
+							alert("Wygrało kółko");
+							wygrana=1;
+						}
+						
+						
+						
+					
+					
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0&&tab2.indexOf(c+a+(b+2))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0&&tab2.indexOf(c+(a+2)+(b+2))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0&&tab2.indexOf(c+(a+2)+b)>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0&&tab2.indexOf(c+(a+2)+(b-2))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+(b-2))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+(a-2)+(b-2))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+(a-2)+b)>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+(a-2)+(b+2))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						
+						if(tab2.indexOf(c+(a-1)+b)>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+b)>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+(a-1)+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b+1))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+a+(b-1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+a+(b+1))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						if(tab2.indexOf(c+(a-1)+(b+1))>=0&&tab2.indexOf(c+a+b)>=0&&tab2.indexOf(c+(a+1)+(b-1))>=0){
+							alert("Wygrał krzyżyk");
+							wygrana=1;
+						}
+						
+						
+					}
+					if(znak==82&&wygrana==0){
+						alert("Nikt nie wygrał");
+					}
+					
+					
+				}	
+				
+				if(x=="ArrowLeft"){
+					if(b==1){
+					}else{
+						b--;
+						z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+				if(x=="ArrowRight"){
+					if(b==9){	
+					}else{
+					b++;
+					z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+				if(x=="ArrowUp"){
+					if(a==1){
+					}else{
+						a--;
+						z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+				if(x=="ArrowDown"){
+					if(a==9){	
+					}else{
+						a++;
+						z=document.getElementById("p"+a+b).textContent;
+					}
+					if(z==="O"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=1;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+					if(z==="X"){
+						document.getElementById("p"+a+b).innerHTML="*";
+						kon=2;
+					}else{
+						document.getElementById("p"+a+b).innerHTML="*";
+					}
+				}
+			}
+		}
+		
+		function aaa(){
+			document.getElementById("button").innerHTML='<button onclick="reset()">RESET</button>'
+		}
+		function reset(){
+			history.go(0);
+		}
+	</script>
+	
+</head>
+<body onkeydown="klawisz(event)">
+	<table>
+		<tr>
+			<td id="p11"></td>
+			<td id="p12"></td>
+			<td id="p13"></td>
+			<td id="p14"></td>
+			<td id="p15"></td>
+			<td id="p16"></td>
+			<td id="p17"></td>
+			<td id="p18"></td>
+			<td id="p19"></td>
+		</tr>
+		<tr>
+			<td id="p21"></td>
+			<td id="p22"></td>
+			<td id="p23"></td>
+			<td id="p24"></td>
+			<td id="p25"></td>
+			<td id="p26"></td>
+			<td id="p27"></td>
+			<td id="p28"></td>
+			<td id="p29"></td>
+		</tr>
+		<tr>
+			<td id="p31"></td>
+			<td id="p32"></td>
+			<td id="p33"></td>
+			<td id="p34"></td>
+			<td id="p35"></td>
+			<td id="p36"></td>
+			<td id="p37"></td>
+			<td id="p38"></td>
+			<td id="p39"></td>
+		</tr>
+		<tr>
+			<td id="p41"></td>
+			<td id="p42"></td>
+			<td id="p43"></td>
+			<td id="p44"></td>
+			<td id="p45"></td>
+			<td id="p46"></td>
+			<td id="p47"></td>
+			<td id="p48"></td>
+			<td id="p49"></td>
+		</tr>
+		<tr>
+			<td id="p51"></td>
+			<td id="p52"></td>
+			<td id="p53"></td>
+			<td id="p54"></td>
+			<td id="p55"></td>
+			<td id="p56"></td>
+			<td id="p57"></td>
+			<td id="p58"></td>
+			<td id="p59"></td>
+		</tr>
+		<tr>
+			<td id="p61"></td>
+			<td id="p62"></td>
+			<td id="p63"></td>
+			<td id="p64"></td>
+			<td id="p65"></td>
+			<td id="p66"></td>
+			<td id="p67"></td>
+			<td id="p68"></td>
+			<td id="p69"></td>
+		</tr>
+		<tr>
+			<td id="p71"></td>
+			<td id="p72"></td>
+			<td id="p73"></td>
+			<td id="p74"></td>
+			<td id="p75"></td>
+			<td id="p76"></td>
+			<td id="p77"></td>
+			<td id="p78"></td>
+			<td id="p79"></td>
+		</tr>
+		<tr>
+			<td id="p81"></td>
+			<td id="p82"></td>
+			<td id="p83"></td>
+			<td id="p84"></td>
+			<td id="p85"></td>
+			<td id="p86"></td>
+			<td id="p87"></td>
+			<td id="p88"></td>
+			<td id="p89"></td>
+		</tr>
+		<tr>
+			<td id="p91"></td>
+			<td id="p92"></td>
+			<td id="p93"></td>
+			<td id="p94"></td>
+			<td id="p95"></td>
+			<td id="p96"></td>
+			<td id="p97"></td>
+			<td id="p98"></td>
+			<td id="p99"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<p id="button"></p>
+	<br>
+	<br>
+	<div>
+		<h1>Zasady</h1>
+		<p>Gwiazdka wskazuje pozycje kursora. Aby nadać polu znak należy wcisnąć Enter oraz potwierdzić wybór ponownie klikając Enter. Pierwszy zaczyna krzyżyk. Powodzenia!</p>
+	</div>
+</body>
+</html>
